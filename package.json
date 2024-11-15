@@ -1,7 +1,7 @@
 {
-  "name": "partners-portal",
+  "name": "auth-gate",
   "version": "0.0.1",
-  "description": "Simple lead managment app",
+  "description": "Authentication and authorization JWT project",
   "main": "index.js",
   "scripts": {
     "dev-client": "npm run dev --prefix client",
@@ -9,12 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/george-silviu/partners-portal.git"
+    "url": "https://github.com/george-silviu/auth-gate"
   },
   "author": "George-Silviu Costache",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/george-silviu/partners-portal/issues"
-  },
-  "homepage": "https://github.com/george-silviu/partners-portal#readme"
+  "homepage": "https://github.com/george-silviu/auth-gate#readme"
 }

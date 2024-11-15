@@ -37,6 +37,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 //public routes
+app.use("/register", require("./routes/register/register.routes"));
+
 app.use("/api/auth", require("./routes/auth/auth.router"));
 
 //private routes

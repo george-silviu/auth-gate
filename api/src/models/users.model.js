@@ -1,5 +1,38 @@
 const { pool } = require("../services/postgres");
 
+async function insertUser(data, salt, hash) {
+  const client = await pool.connect();
+  try {
+    await client.query(`BEGIN`);
+    const companyInsertQuery = await client.query(
+      `
+        INSERT INTO companies(name)
+        VALUES($1)
+        RETURNING id;
+      `,
+      [data.company]
+    );
+
+    const companyId = companyInsertQuery.rows[0].id;
+
+    await client.query(
+      `
+        INSERT INTO users(username, salt, hash, company_id, role)
+        VALUES ($1, $2, $3, $4, $5);
+      `,
+      [data.username, salt, hash, companyId, data.role]
+    );
+
+    await client.query("COMMIT");
+    return { success: true };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 async function selectUserByUsername(username) {
   try {
     const data = await pool.query(
@@ -98,6 +131,7 @@ async function selectUsers() {
 }
 
 module.exports = {
+  insertUser,
   selectUserByUsername,
   insertUserRefreshToken,
   selectUserByRefreshToken,

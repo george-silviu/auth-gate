@@ -13,6 +13,7 @@ const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
 async function handleLogin(req, res) {
   try {
     const { username, password } = req.body;
+
     if (!username && !password) {
       return res
         .status(400)
@@ -20,6 +21,7 @@ async function handleLogin(req, res) {
     }
 
     const foundUser = await selectUserByUsername(username);
+
     if (!foundUser) {
       return res
         .status(401)
@@ -29,6 +31,7 @@ async function handleLogin(req, res) {
     // const match = await bcrypt.compare(password, foundUser.password);
 
     const match = password === foundUser.password;
+
     if (!match) {
       return res.status(401).json({ error: "The password is incorrect." });
     }

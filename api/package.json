@@ -1,7 +1,7 @@
 {
-  "name": "partners-portal-api",
+  "name": "auth-gate-api",
   "version": "0.0.1",
-  "description": "Simple lead management app api",
+  "description": "Authentication and authorization JWT project api",
   "main": "index.js",
   "scripts": {
     "production": "node src/server.js",
