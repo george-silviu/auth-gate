@@ -1,0 +1,50 @@
+.resources {
+  padding: 20px 20px;
+
+  .resources-actions {
+    display: flex;
+    justify-content: space-between;
+    min-height: 40px;
+  }
+
+  .resources-content {
+    .resource-category-container {
+      .resource-category-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .resource-category-title {
+          font-size: 28px;
+        }
+
+        .resource-category-actions {
+          margin-right: 10px;
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      .resource-category-content {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .document-card {
+          background-color: #d1d1e9;
+          padding: 20px;
+          max-width: 150px;
+          width: 100%;
+          text-align: left;
+          border: 1px solid #6246ea;
+          transition: box-shadow 0.5s ease;
+          &:hover {
+            cursor: pointer;
+            box-shadow: 6px 6px 0 0 #6246ea;
+          }
+        }
+      }
+    }
+  }
+}

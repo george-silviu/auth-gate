@@ -1,0 +1,27 @@
+.register-container {
+  background-color: #daf7dc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .register-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    height: 70vh;
+    background-color: #9ee493;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+    .register-form-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 20px;
+    }
+  }
+}

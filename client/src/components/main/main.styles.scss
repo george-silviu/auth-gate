@@ -1,0 +1,15 @@
+.main {
+  // height: calc(
+  //   100vh - 90px
+  // ); /* viewport height - navbar height + padding + gap */
+
+  height: 100vh;
+
+  background-color: #daf7dc;
+
+  grid-area: main;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

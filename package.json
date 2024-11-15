@@ -1,0 +1,20 @@
+{
+  "name": "partners-portal",
+  "version": "0.0.1",
+  "description": "Simple lead managment app",
+  "main": "index.js",
+  "scripts": {
+    "dev-client": "npm run dev --prefix client",
+    "dev-server": "npm run dev --prefix api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/george-silviu/partners-portal.git"
+  },
+  "author": "George-Silviu Costache",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/george-silviu/partners-portal/issues"
+  },
+  "homepage": "https://github.com/george-silviu/partners-portal#readme"
+}
