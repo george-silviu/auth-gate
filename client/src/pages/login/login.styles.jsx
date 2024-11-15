@@ -27,10 +27,9 @@ export const LoginForm = styled.div`
   min-height: 40vh;
   background-color: ${containerBackground};
   border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
   box-sizing: border-box;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid #0d0d0d;
 `;
 
 export const LoginFormHeader = styled.h1`

@@ -10,6 +10,7 @@ const Register = () => {
     <div className="register-container">
       <div className="register-form">
         <h1 className="register-form-header">Register</h1>
+        <img src="/logo.png" />
 
         <TextField
           required

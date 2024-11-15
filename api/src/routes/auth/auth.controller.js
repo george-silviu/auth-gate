@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const {
   selectUserByUsername,
@@ -28,9 +29,10 @@ async function handleLogin(req, res) {
         .json({ error: "The provided username doesn't exist." });
     }
 
-    // const match = await bcrypt.compare(password, foundUser.password);
+    //check if curent hashed passwords match with the one stored in db
+    const hashedPassword = await bcrypt.hash(password, foundUser.salt);
 
-    const match = password === foundUser.password;
+    const match = hashedPassword === foundUser.hash;
 
     if (!match) {
       return res.status(401).json({ error: "The password is incorrect." });
@@ -38,6 +40,7 @@ async function handleLogin(req, res) {
 
     const roles = [foundUser.role];
 
+    //create the accessToken
     const accessToken = jwt.sign(
       {
         id: foundUser.id,
@@ -48,6 +51,7 @@ async function handleLogin(req, res) {
       { expiresIn: "10m" }
     );
 
+    //create refresh token
     const refreshToken = jwt.sign(
       { username: foundUser.username },
       refreshTokenSecret,
@@ -55,8 +59,10 @@ async function handleLogin(req, res) {
     );
 
     try {
+      //insert the refresh token
       await insertUserRefreshToken(foundUser.id, refreshToken);
 
+      //return jwt token cookie
       res.cookie("jwt", refreshToken, {
         httpOnly: true,
         //sameSite: "None",
@@ -65,7 +71,7 @@ async function handleLogin(req, res) {
       });
 
       //send the acces token as a json
-      //important : this token should be saved in memory
+      //important : this token should be saved in the memory of client app
       return res.status(200).json({ roles, accessToken });
     } catch (error) {
       console.error(error.message);
@@ -102,11 +108,11 @@ async function handleRefresh(req, res) {
       return res.sendStatus(403);
     }
 
-    console.log(foundUser);
+    // console.log(foundUser);
 
     const roles = [foundUser.role];
 
-    console.log("roles", roles);
+    // console.log("roles", roles);
 
     const accessToken = jwt.sign(
       {
@@ -125,7 +131,9 @@ async function handleLogout(req, res) {
   //on client also delete the accessToken
 
   const cookies = req.cookies;
+
   if (!cookies?.jwt) return res.sendStatus(204); //No content
+
   const refreshToken = cookies.jwt;
 
   //is refreshToken in db?

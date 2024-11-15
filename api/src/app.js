@@ -39,7 +39,7 @@ app.use(cookieParser());
 //public routes
 app.use("/register", require("./routes/register/register.routes"));
 
-app.use("/api/auth", require("./routes/auth/auth.router"));
+app.use("/auth", require("./routes/auth/auth.router"));
 
 //private routes
 app.use("/api/v1", checkJWT, require("./routes/v1")); // API routes

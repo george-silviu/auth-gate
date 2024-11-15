@@ -18,7 +18,7 @@ import { LoginContainer, LoginForm, LoginFormHeader } from "./login.styles";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 
-const LOGIN_URL = "/api/auth/login";
+const LOGIN_URL = "/auth/login";
 
 const Login = () => {
   const { setAuth } = useAuth();
@@ -94,15 +94,12 @@ const Login = () => {
       <ToastContainer theme="dark" />
 
       <LoginForm>
-        <img
-          src="/partners-portal_logo.png"
-          alt="logo"
-          style={{ borderRadius: "15px" }}
-        />
-        <div>
-          <LoginFormHeader>Nice to see you again!</LoginFormHeader>
-          <p>Insert your credentials to jump back in. </p>
-        </div>
+        <img src="/logo.png" alt="logo" style={{ borderRadius: "15px" }} />
+
+        <LoginFormHeader>Welcome to AuthGate!</LoginFormHeader>
+        <p>
+          Insert your credentials to authenticate and access your resources.📦🗝️
+        </p>
 
         <section>
           <strong>
@@ -155,7 +152,7 @@ const Login = () => {
         <Button
           variant="contained"
           style={{
-            backgroundColor: "#6246ea",
+            backgroundColor: "rgb(255 95 0)",
             color: "#fffffe",
           }}
           onClick={handleLogin}
@@ -164,7 +161,7 @@ const Login = () => {
         </Button>
       </LoginForm>
       <p>
-        Need an account? Apply for registration{" "}
+        Need an account? Register{" "}
         <a href="/register">
           {" "}
           <b>here</b>.
