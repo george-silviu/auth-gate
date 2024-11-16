@@ -25,7 +25,7 @@ async function handleLogin(req, res) {
 
     if (!foundUser) {
       return res
-        .status(401)
+        .status(401) //Unauthorized
         .json({ error: "The provided username doesn't exist." });
     }
 
@@ -35,7 +35,7 @@ async function handleLogin(req, res) {
     const match = hashedPassword === foundUser.hash;
 
     if (!match) {
-      return res.status(401).json({ error: "The password is incorrect." });
+      return res.status(401).json({ error: "The password is incorrect." }); //Unauthorized
     }
 
     const roles = [foundUser.role];
@@ -105,7 +105,7 @@ async function handleRefresh(req, res) {
 
   jwt.verify(refreshToken, refreshTokenSecret, async (err, decoded) => {
     if (err || foundUser.username !== decoded.username) {
-      return res.sendStatus(403);
+      return res.sendStatus(403); //Forbidden
     }
 
     // console.log(foundUser);
